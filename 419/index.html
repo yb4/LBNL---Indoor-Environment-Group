@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.10.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.10.min.js"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+    <title>419</title>
+    <style>
+    * {box-sizing: border-box}
+    body {font-family: "Lato", sans-serif;}
+    /* Style the tab */
+    .tab {
+      float: left;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      width: 30%;
+      height: 300px;
+    }
+    /* Style the buttons inside the tab */
+    .tab button {
+      display: block;
+      background-color: inherit;
+      color: black;
+      padding: 22px 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    th,td{
+        padding: 10px 20px 10px 20px;
+        border: 1px solid darkgrey;
+    }
+    /* Create an active/current "tab button" class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+    /* Style the tab content */
+    .tabcontent {
+      float: left;
+      padding: 0px 12px;
+      /*border: 1px solid #ccc;*/
+      width: 70%;
+      border-left: none;
+      height: 300px;
+    }
+    iframe{
+      /*margin-left:200px;*/
+      width:700px;
+      height:620px;
+    }
+    </style>
+    </head>
+    <body>
+    <h2></h2>
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'pms')" id="defaultOpen">PM - MetOne/DustTrak/pDR</button>
+        <button class="tablinks" onclick="openCity(event, 'pm25s')">PM2.5 - Clarity/AirVisual Pro</button>
+        <button class="tablinks" onclick="openCity(event, 'pm10s')">PM10 - Clarity/AirVisual Pro</button>
+        <button class="tablinks" onclick="openCity(event, 'co2s')">CO2</button>
+        <button class="tablinks" onclick="openCity(event, 'forms')">Formaldahyde</button>
+        <button class="tablinks" onclick="openCity(event, 'inrhs')">Indoor Relative Humidity</button>
+        <button class="tablinks" onclick="openCity(event, 'outrhs')">Outdoor Relative Humidity</button>
+        <button class="tablinks" onclick="openCity(event, 'intemps')">Indoor Temperature</button>
+        <button class="tablinks" onclick="openCity(event, 'outtemps')">Outdoor Temperature</button>
+        <button class="tablinks" onclick="openCity(event, 'ibus')">iButton Temperature</button>
+        <button class="tablinks" onclick="openCity(event, 'plds')">Plug Load</button>
+        <button class="tablinks" onclick="openCity(event, 'anms')">Anemometer</button>
+        <button class="tablinks" onclick="openCity(event, 'doors')">Door State</button></div>
+    <div id="pms" class="tabcontent"><h3>PM - MetOne/DustTrak/pDR</h3><iframe src="pm.html"></iframe>
+            <p><b>PMin<br></b>
+            Mean: 4.6<br>
+            Minimum: 0.0<br>
+            5th Percentile: 1.0<br>
+            25th Percentile: 2.0<br>
+            Median: 2.0<br>
+            75th Percentile: 4.0<br>
+            95th Percentile: 14.0<br>
+            Maximum: 254.0<br></p>
+            
+            <p><b>PMout<br></b>
+            Mean: 4.7<br>
+            Minimum: 1.4<br>
+            5th Percentile: 2.0<br>
+            25th Percentile: 3.1<br>
+            Median: 4.3<br>
+            75th Percentile: 5.7<br>
+            95th Percentile: 8.1<br>
+            Maximum: 69.0<br></p>
+            </div>
+        <div id="pm25s" class="tabcontent"><h3>PM2.5 - Clarity/AirVisual Pro</h3><iframe src="pm25.html"></iframe>
+            <p><b>AVP_BR1_PM25<br></b>
+            Mean: 3.6<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.8<br>
+            25th Percentile: 1.2<br>
+            Median: 2.0<br>
+            75th Percentile: 3.7<br>
+            95th Percentile: 11.3<br>
+            Maximum: 63.4<br></p>
+            
+            <p><b>AVP_GRL_PM25<br></b>
+            Mean: 3.5<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.5<br>
+            25th Percentile: 1.0<br>
+            Median: 1.8<br>
+            75th Percentile: 3.1<br>
+            95th Percentile: 10.9<br>
+            Maximum: 251.2<br></p>
+            
+            <p><b>AVP_SCA_PM25<br></b>
+            Mean: 3.3<br>
+            Minimum: 0.0<br>
+            5th Percentile: 1.0<br>
+            25th Percentile: 1.0<br>
+            Median: 2.0<br>
+            75th Percentile: 3.3<br>
+            95th Percentile: 11.2<br>
+            Maximum: 41.3<br></p>
+            </div>
+        <div id="pm10s" class="tabcontent"><h3>PM10 - Clarity/AirVisual Pro</h3><iframe src="pm10.html"></iframe>
+            <p><b>AVP_BR1_PM10<br></b>
+            Mean: 7.4<br>
+            Minimum: 0.0<br>
+            5th Percentile: 1.0<br>
+            25th Percentile: 2.3<br>
+            Median: 3.8<br>
+            75th Percentile: 7.0<br>
+            95th Percentile: 25.0<br>
+            Maximum: 176.8<br></p>
+            
+            <p><b>AVP_GRL_PM10<br></b>
+            Mean: 7.8<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.5<br>
+            25th Percentile: 1.2<br>
+            Median: 2.1<br>
+            75th Percentile: 5.0<br>
+            95th Percentile: 24.3<br>
+            Maximum: 1358.1<br></p>
+            
+            <p><b>AVP_SCA_PM10<br></b>
+            Mean: 6.5<br>
+            Minimum: 0.0<br>
+            5th Percentile: 1.0<br>
+            25th Percentile: 1.6<br>
+            Median: 2.6<br>
+            75th Percentile: 5.2<br>
+            95th Percentile: 22.1<br>
+            Maximum: 154.2<br></p>
+            </div>
+        <div id="co2s" class="tabcontent"><h3>CO2</h3><iframe src="co2.html"></iframe>
+            <p><b>AVP_BR1_CO2<br></b>
+            Mean: 1047.0<br>
+            Minimum: 751.6<br>
+            5th Percentile: 839.7<br>
+            25th Percentile: 981.1<br>
+            Median: 1044.3<br>
+            75th Percentile: 1124.7<br>
+            95th Percentile: 1235.6<br>
+            Maximum: 1330.2<br></p>
+            
+            <p><b>AVP_GRL_CO2<br></b>
+            Mean: 1007.4<br>
+            Minimum: 777.2<br>
+            5th Percentile: 836.4<br>
+            25th Percentile: 920.8<br>
+            Median: 1022.1<br>
+            75th Percentile: 1068.4<br>
+            95th Percentile: 1202.1<br>
+            Maximum: 1354.1<br></p>
+            
+            <p><b>AVP_SCA_CO2<br></b>
+            Mean: 995.7<br>
+            Minimum: 771.8<br>
+            5th Percentile: 811.2<br>
+            25th Percentile: 916.6<br>
+            Median: 1017.0<br>
+            75th Percentile: 1065.6<br>
+            95th Percentile: 1162.6<br>
+            Maximum: 1297.7<br></p>
+            </div>
+        <div id="forms" class="tabcontent"><h3>Formaldahyde</h3><iframe src="frm.html"></iframe>
+            <p><b>FRM_BR1<br></b>
+            Mean: 40.1<br>
+            Minimum: 22<br>
+            5th Percentile: 32.0<br>
+            25th Percentile: 37.0<br>
+            Median: 40.0<br>
+            75th Percentile: 43.0<br>
+            95th Percentile: 48.0<br>
+            Maximum: 52<br></p>
+            
+            <p><b>FRM_GRL<br></b>
+            Mean: 35.6<br>
+            Minimum: 25<br>
+            5th Percentile: 29.0<br>
+            25th Percentile: 33.0<br>
+            Median: 36.0<br>
+            75th Percentile: 38.0<br>
+            95th Percentile: 40.0<br>
+            Maximum: 42<br></p>
+            </div>
+        <div id="inrhs" class="tabcontent"><h3>Indoor Relative Humidity</h3><iframe src="inrh.html"></iframe>
+            <p><b>AVP_BR1_RH<br></b>
+            Mean: 55.7<br>
+            Minimum: 53.0<br>
+            5th Percentile: 54.0<br>
+            25th Percentile: 55.0<br>
+            Median: 56.0<br>
+            75th Percentile: 56.0<br>
+            95th Percentile: 57.0<br>
+            Maximum: 62.5<br></p>
+            
+            <p><b>AVP_GRL_RH<br></b>
+            Mean: 55.5<br>
+            Minimum: 53.0<br>
+            5th Percentile: 54.0<br>
+            25th Percentile: 55.0<br>
+            Median: 55.6<br>
+            75th Percentile: 56.0<br>
+            95th Percentile: 57.0<br>
+            Maximum: 61.0<br></p>
+            
+            <p><b>AVP_SCA_RH<br></b>
+            Mean: 56.8<br>
+            Minimum: 54.0<br>
+            5th Percentile: 55.0<br>
+            25th Percentile: 56.0<br>
+            Median: 57.0<br>
+            75th Percentile: 57.0<br>
+            95th Percentile: 58.0<br>
+            Maximum: 60.0<br></p>
+            
+            <p><b>AS1_RH<br></b>
+            Mean: 77.0<br>
+            Minimum: 55.9<br>
+            5th Percentile: 59.9<br>
+            25th Percentile: 63.1<br>
+            Median: 77.7<br>
+            75th Percentile: 88.5<br>
+            95th Percentile: 95.9<br>
+            Maximum: 97.0<br></p>
+            
+            <p><b>ATT_RH<br></b>
+            Mean: 58.9<br>
+            Minimum: 53.5<br>
+            5th Percentile: 54.8<br>
+            25th Percentile: 56.7<br>
+            Median: 57.9<br>
+            75th Percentile: 60.7<br>
+            95th Percentile: 65.4<br>
+            Maximum: 67.4<br></p>
+            
+            <p><b>BA1_RH<br></b>
+            Mean: 60.7<br>
+            Minimum: 46.3<br>
+            5th Percentile: 54.2<br>
+            25th Percentile: 55.9<br>
+            Median: 57.7<br>
+            75th Percentile: 63.0<br>
+            95th Percentile: 76.9<br>
+            Maximum: 96.4<br></p>
+            
+            <p><b>BA2_RH<br></b>
+            Mean: 58.9<br>
+            Minimum: 48.6<br>
+            5th Percentile: 55.3<br>
+            25th Percentile: 56.5<br>
+            Median: 57.6<br>
+            75th Percentile: 59.2<br>
+            95th Percentile: 66.1<br>
+            Maximum: 97.9<br></p>
+            
+            <p><b>RHD_RH<br></b>
+            Mean: 54.2<br>
+            Minimum: 34.3<br>
+            5th Percentile: 51.6<br>
+            25th Percentile: 53.6<br>
+            Median: 54.3<br>
+            75th Percentile: 55.3<br>
+            95th Percentile: 56.4<br>
+            Maximum: 64.1<br></p>
+            </div>
+        <div id="outrhs" class="tabcontent"><h3>Outdoor Relative Humidity</h3><iframe src="outrh.html"></iframe>
+            <p><b>OUT_RH<br></b>
+            Mean: 72.8<br>
+            Minimum: 20.5<br>
+            5th Percentile: 34.7<br>
+            25th Percentile: 53.9<br>
+            Median: 79.8<br>
+            75th Percentile: 91.8<br>
+            95th Percentile: 99.6<br>
+            Maximum: 100.0<br></p>
+            </div>
+        <div id="intemps" class="tabcontent"><h3>Indoor Temperature</h3><iframe src="intemp.html"></iframe>
+            <p><b>AVP_BR1_T<br></b>
+            Mean: 23.9<br>
+            Minimum: 23.0<br>
+            5th Percentile: 23.5<br>
+            25th Percentile: 23.7<br>
+            Median: 23.9<br>
+            75th Percentile: 24.1<br>
+            95th Percentile: 24.3<br>
+            Maximum: 24.4<br></p>
+            
+            <p><b>AVP_GRL_T<br></b>
+            Mean: 23.9<br>
+            Minimum: 23.4<br>
+            5th Percentile: 23.6<br>
+            25th Percentile: 23.8<br>
+            Median: 23.9<br>
+            75th Percentile: 24.0<br>
+            95th Percentile: 24.1<br>
+            Maximum: 24.2<br></p>
+            
+            <p><b>AVP_SCA_T<br></b>
+            Mean: 23.5<br>
+            Minimum: 22.8<br>
+            5th Percentile: 23.1<br>
+            25th Percentile: 23.3<br>
+            Median: 23.5<br>
+            75th Percentile: 23.7<br>
+            95th Percentile: 24.1<br>
+            Maximum: 24.2<br></p>
+            
+            <p><b>AS1_T<br></b>
+            Mean: 19.2<br>
+            Minimum: 12.1<br>
+            5th Percentile: 13.6<br>
+            25th Percentile: 16.6<br>
+            Median: 19.2<br>
+            75th Percentile: 22.5<br>
+            95th Percentile: 23.3<br>
+            Maximum: 23.5<br></p>
+            
+            <p><b>ATT_T<br></b>
+            Mean: 24.8<br>
+            Minimum: 21.8<br>
+            5th Percentile: 22.5<br>
+            25th Percentile: 23.5<br>
+            Median: 24.3<br>
+            75th Percentile: 26.1<br>
+            95th Percentile: 27.6<br>
+            Maximum: 28.3<br></p>
+            
+            <p><b>BA1_T<br></b>
+            Mean: 24.0<br>
+            Minimum: 22.7<br>
+            5th Percentile: 23.4<br>
+            25th Percentile: 23.7<br>
+            Median: 23.9<br>
+            75th Percentile: 24.1<br>
+            95th Percentile: 25.1<br>
+            Maximum: 26.3<br></p>
+            
+            <p><b>BA2_T<br></b>
+            Mean: 24.0<br>
+            Minimum: 22.8<br>
+            5th Percentile: 23.4<br>
+            25th Percentile: 23.7<br>
+            Median: 24.0<br>
+            75th Percentile: 24.2<br>
+            95th Percentile: 24.7<br>
+            Maximum: 28.5<br></p>
+            
+            <p><b>RHD_T<br></b>
+            Mean: 24.2<br>
+            Minimum: 23.4<br>
+            5th Percentile: 23.8<br>
+            25th Percentile: 23.9<br>
+            Median: 24.0<br>
+            75th Percentile: 24.1<br>
+            95th Percentile: 25.2<br>
+            Maximum: 34.7<br></p>
+            </div>
+        <div id="outtemps" class="tabcontent"><h3>Outdoor Temperature</h3><iframe src="outtemp.html"></iframe>
+            <p><b>OUT_T<br></b>
+            Mean: 23.8<br>
+            Minimum: 11.0<br>
+            5th Percentile: 14.9<br>
+            25th Percentile: 19.6<br>
+            Median: 23.5<br>
+            75th Percentile: 27.8<br>
+            95th Percentile: 34.0<br>
+            Maximum: 38.1<br></p>
+            </div>
+        <div id="ibus" class="tabcontent"><h3>iButton Temperature</h3><iframe src="ibo.html"></iframe>
+            <p><b>IBU_CRC<br></b>
+            Mean: 24.1<br>
+            Minimum: 23.1<br>
+            5th Percentile: 23.6<br>
+            25th Percentile: 23.6<br>
+            Median: 23.6<br>
+            75th Percentile: 24.1<br>
+            95th Percentile: 24.6<br>
+            Maximum: 86.3<br></p>
+            
+            <p><b>IBU_TOV<br></b>
+            Mean: 25.2<br>
+            Minimum: 22.9<br>
+            5th Percentile: 23.7<br>
+            25th Percentile: 24.2<br>
+            Median: 24.2<br>
+            75th Percentile: 24.2<br>
+            95th Percentile: 25.7<br>
+            Maximum: 86.1<br></p>
+            
+            <p><b>IBU_OV1<br></b>
+            Mean: 24.2<br>
+            Minimum: 23.6<br>
+            5th Percentile: 23.6<br>
+            25th Percentile: 24.1<br>
+            Median: 24.1<br>
+            75th Percentile: 24.1<br>
+            95th Percentile: 24.6<br>
+            Maximum: 32.1<br></p>
+            </div>
+        <div id="plds" class="tabcontent"><h3>Plug Load</h3><iframe src="pld.html"></iframe>
+            <p><b>PLD_CDR<br></b>
+            Mean: 11.5<br>
+            Minimum: 1.1<br>
+            5th Percentile: 1.1<br>
+            25th Percentile: 1.1<br>
+            Median: 1.1<br>
+            75th Percentile: 1.1<br>
+            95th Percentile: 1.4<br>
+            Maximum: 806.7<br></p>
+            </div>
+        <div id="anms" class="tabcontent"><h3>Anemometer</h3><iframe src="anm.html"></iframe>
+            <p><b>ANM_AS1<br></b>
+            Mean: 0.6<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 0.0<br>
+            95th Percentile: 2.9<br>
+            Maximum: 3.0<br></p>
+            
+            <p><b>ANM_EF1<br></b>
+            Mean: 0.1<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 0.0<br>
+            95th Percentile: 0.4<br>
+            Maximum: 1.2<br></p>
+            
+            <p><b>ANM_EF2<br></b>
+            Mean: 0.0<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 0.0<br>
+            95th Percentile: 0.0<br>
+            Maximum: 0.6<br></p>
+            
+            <p><b>ANM_EF3<br></b>
+            Mean: 0.0<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 0.0<br>
+            95th Percentile: 0.0<br>
+            Maximum: 0.8<br></p>
+            
+            <p><b>ANM_RHD<br></b>
+            Mean: 0.0<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 0.0<br>
+            95th Percentile: 0.0<br>
+            Maximum: 4.3<br></p>
+            </div>
+        <div id="doors" class="tabcontent"><h3>Door State</h3><iframe src="sta.html"></iframe>
+            <p><b>STA_BR1<br></b>
+            Mean: 44.8<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 100.0<br>
+            95th Percentile: 100.0<br>
+            Maximum: 100.0<br></p>
+            
+            <p><b>STA_BR2<br></b>
+            Mean: 46.9<br>
+            Minimum: 0.0<br>
+            5th Percentile: 0.0<br>
+            25th Percentile: 0.0<br>
+            Median: 0.0<br>
+            75th Percentile: 100.0<br>
+            95th Percentile: 100.0<br>
+            Maximum: 100.0<br></p>
+            
+            <p><b>STA_DGH<br></b>
+            Mean: 99.1<br>
+            Minimum: 0.0<br>
+            5th Percentile: 100.0<br>
+            25th Percentile: 100.0<br>
+            Median: 100.0<br>
+            75th Percentile: 100.0<br>
+            95th Percentile: 100.0<br>
+            Maximum: 100.0<br></p>
+            
+            <p><b>STA_DP1<br></b>
+            Mean: 99.8<br>
+            Minimum: 0.0<br>
+            5th Percentile: 100.0<br>
+            25th Percentile: 100.0<br>
+            Median: 100.0<br>
+            75th Percentile: 100.0<br>
+            95th Percentile: 100.0<br>
+            Maximum: 100.0<br></p>
+            </div><script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html> 
